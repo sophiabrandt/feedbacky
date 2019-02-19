@@ -1,0 +1,16 @@
+{
+  "name": "feedbacky",
+  "version": "1.0.0",
+  "main": "index.js",
+  "engines": {
+    "node": "11.8.0",
+    "npm": "6.7.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
