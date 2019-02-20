@@ -18,7 +18,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: '/auth/google/callback',
+      callbackURL:
+        'https://peaceful-atoll-91110.herokuapp.com/auth/google/callback',
       proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
