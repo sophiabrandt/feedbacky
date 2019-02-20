@@ -1,6 +1,9 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
 const passport = require('@passport-next/passport')
 const GoogleStrategy = require('@passport-next/passport-google-oauth2').Strategy
+
+const User = mongoose.model('users')
 
 passport.use(
   new GoogleStrategy(
@@ -10,7 +13,13 @@ passport.use(
       callbackURL: 'http://localhost:5000/auth/google/callback'
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log(accessToken, refreshToken, profile, done)
+      User.findOne({ googleId: profile.id }).then(existingUser => {
+        existingUser
+          ? done(null, existingUser)
+          : new User({ googleId: profile.id })
+              .save()
+              .then(user => done(null, user))
+      })
     }
   )
 )
