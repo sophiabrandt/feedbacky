@@ -22,7 +22,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/current_user', (req, res) => {
-  console.log(req.user)
+  //console.log(req.user)
   res.send('You are logged in!')
 })
 
