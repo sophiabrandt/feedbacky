@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('custom-env').env()
 const mongoose = require('mongoose')
 const passport = require('@passport-next/passport')
 const GoogleStrategy = require('@passport-next/passport-google-oauth2').Strategy
