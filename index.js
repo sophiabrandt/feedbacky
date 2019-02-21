@@ -1,4 +1,4 @@
-require('custom-env').env()
+require('dotenv').config()
 
 // Express
 const express = require('express')
