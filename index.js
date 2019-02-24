@@ -26,8 +26,10 @@ app.use(passport.session())
 
 // Routes
 const authRouter = require('./routes/auth')
+const apiRouter = require('./routes/api')
 const rootRouter = require('./routes/root')
 app.use('/auth', authRouter)
+app.use('/api', apiRouter)
 app.use('/', rootRouter)
 
 // PORT
