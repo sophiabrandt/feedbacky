@@ -4,6 +4,10 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+// Body Parser
+const bodyParser = require('body-parser')
+app.use(bodyParser.json())
+
 // Mongoose
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
@@ -25,11 +29,15 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Routes
+const requireLogin = require('./middlewares/requireLogin')
 const authRouter = require('./routes/auth')
+const billingRouter = require('./routes/billing')
 const apiRouter = require('./routes/api')
 const rootRouter = require('./routes/root')
 app.use('/auth', authRouter)
+app.use('/api/stripe', requireLogin, billingRouter)
 app.use('/api', apiRouter)
+
 app.use('/', rootRouter)
 
 // PORT
