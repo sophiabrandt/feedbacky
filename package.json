@@ -16,10 +16,12 @@
   "dependencies": {
     "@passport-next/passport": "^2.1.0",
     "@passport-next/passport-google-oauth2": "^1.0.0",
+    "body-parser": "^1.18.3",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "mongoose": "^5.4.14"
+    "mongoose": "^5.4.14",
+    "stripe": "^6.25.1"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
