@@ -33,12 +33,21 @@ const requireLogin = require('./middlewares/requireLogin')
 const authRouter = require('./routes/auth')
 const billingRouter = require('./routes/billing')
 const apiRouter = require('./routes/api')
-const rootRouter = require('./routes/root')
 app.use('/auth', authRouter)
 app.use('/api/stripe', requireLogin, billingRouter)
 app.use('/api', apiRouter)
 
-app.use('/', rootRouter)
+// serve production assets or index.html file if route is on client side
+if (process.env.NODE_ENV === 'production') {
+  // production assets (main.js, main.css files)
+  app.use(express.static('client/build'))
+
+  // serve client index.html file if no route matches
+  const path = require('path')
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 // PORT
 const PORT = process.env.PORT || 5000
