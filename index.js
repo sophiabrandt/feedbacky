@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 const mongoose = require('mongoose')
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true })
 require('./models/User')
+require('./models/Survey')
 
 // Cookie Session
 const cookieSession = require('cookie-session')
@@ -30,11 +31,14 @@ app.use(passport.session())
 
 // Routes
 const requireLogin = require('./middlewares/requireLogin')
+const requireCredits = require('./middlewares/requireCredits')
 const authRouter = require('./routes/auth')
 const billingRouter = require('./routes/billing')
 const apiRouter = require('./routes/api')
+const surveyRouter = require('./routes/survey')
 app.use('/auth', authRouter)
 app.use('/api/stripe', requireLogin, billingRouter)
+app.use('/api/surveys', requireLogin, requireCredits, surveyRouter)
 app.use('/api', apiRouter)
 
 // serve production assets or index.html file if route is on client side
