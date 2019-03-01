@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router()
+const Mailer = require('../services/Mailer')
+const surveyTemplate = require('../services/emailTemplates/surveyTemplate')
 
 const Survey = mongoose.model('surveys')
 
@@ -17,6 +19,9 @@ router.post('/', (req, res) => {
     _user: req.user.id,
     dateSent: Date.now()
   })
+
+  // use Mailer here
+  const mailer = new Mailer(survey, surveyTemplate(survey))
 })
 
 module.exports = router
