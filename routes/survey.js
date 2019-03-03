@@ -1,12 +1,18 @@
 const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router()
+const requireLogin = require('../middlewares/requireLogin')
+const requireCredits = require('../middlewares/requireCredits')
 const Mailer = require('../services/Mailer')
 const surveyTemplate = require('../services/emailTemplates/surveyTemplate')
 
 const Survey = mongoose.model('surveys')
 
-router.post('/', async (req, res) => {
+router.get('/thanks', (req, res) => {
+  res.send('Thanks for voting!')
+})
+
+router.post('/', requireLogin, requireCredits, async (req, res) => {
   const { title, subject, body, recipients } = req.body
 
   try {

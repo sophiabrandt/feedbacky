@@ -1,9 +1,10 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
+const requireLogin = require('../middlewares/requireLogin')
 const stripe = require('stripe')(process.env.STRIPE_SECRECT_KEY)
 
-router.post('/', async (req, res) => {
+router.post('/', requireLogin, async (req, res) => {
   try {
     const charge = await stripe.charges.create({
       amount: 500,
