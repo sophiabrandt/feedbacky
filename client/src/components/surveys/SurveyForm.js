@@ -1,5 +1,6 @@
 import React from 'react'
 import { reduxForm, Field, FieldArray } from 'redux-form'
+import { Link } from 'react-router-dom'
 import SurveyField from './SurveyField'
 
 const FIELDS = [
@@ -28,7 +29,13 @@ const SurveyForm = props => {
   return (
     <form onSubmit={handleSubmit(values => console.log(values))}>
       <FieldArray name="survey" component={renderFields} />
-      <button type="submit">Submit</button>
+      <Link to="/surveys" className="red btn-flat white-text">
+        Cancel
+      </Link>
+      <button className="teal btn-flat right white-text" type="submit">
+        Next
+        <i className="material-icons right">send</i>
+      </button>
     </form>
   )
 }
