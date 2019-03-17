@@ -32,3 +32,7 @@ export const handleStripeToken = token => async dispatch => {
     )
   }
 }
+
+export const submitSurvey = values => {
+  return { type: 'submit_survey' }
+}
