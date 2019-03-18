@@ -10,8 +10,9 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "yarn --cwd ./client run start",
-    "dev": "concurrently --k \"yarn run server\" \"yarn run client\"",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client run build"
+    "dev": "concurrently --k \"yarn run server\" \"yarn run client\" \"yarn run webhook\"",
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client run build",
+    "webhook": "ssh -R bmobFrUqMBIAt2Ufg27U:80:localhost:5000 serveo.net"
   },
   "license": "MIT",
   "dependencies": {
