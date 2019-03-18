@@ -33,6 +33,8 @@ export const handleStripeToken = token => async dispatch => {
   }
 }
 
-export const submitSurvey = values => {
-  return { type: 'submit_survey' }
+export const submitSurvey = values => async dispatch => {
+  const res = await axios.post('/api/surveys', values)
+
+  dispatch({ type: FETCH_USER, payload: res.data })
 }
