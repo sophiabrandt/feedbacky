@@ -46,4 +46,9 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
   }
 })
 
+router.post('/webhooks', (req, res) => {
+  console.log(req.body)
+  res.send({})
+})
+
 module.exports = router
