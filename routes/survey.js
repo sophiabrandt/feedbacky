@@ -1,3 +1,6 @@
+const R = require('ramda')
+const Path = require('path-parser').default
+const { URL } = require('url')
 const mongoose = require('mongoose')
 const express = require('express')
 const router = express.Router()
@@ -47,7 +50,24 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
 })
 
 router.post('/webhooks', (req, res) => {
-  console.log(req.body)
+  const p = new Path('/api/surveys/:surveyId/:choice')
+
+  const getMatch =({ email, url }) => {
+    const match = p.test(new URL(url).pathname)
+    if (match) return { email, surveyId: match.surveyId, choice: match.choice }
+  }
+
+  const sameEmailAndSurveyId = (a, b) => {
+    return a.email === b.email && a.surveyId === b.surveyId
+  }
+
+  const events = R.pipe(
+    R.map(getMatch),
+    R.filter(Boolean),
+    R.uniqWith(sameEmailAndSurveyId)
+  )(req.body)
+  
+  console.log(events)
   res.send({})
 })
 
