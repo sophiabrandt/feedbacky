@@ -12,7 +12,7 @@
     "client": "yarn --cwd ./client run start",
     "dev": "concurrently --k \"yarn run server\" \"yarn run client\" \"yarn run webhook\"",
     "heroku-postbuild": "YARN_PRODUCTION=false yarn --cwd ./client install && yarn --cwd ./client run build",
-    "webhook": "ssh -R bmobFrUqMBIAt2Ufg27U:80:localhost:5000 serveo.net"
+    "webhook": "ssh -tt -R bmobFrUqMBIAt2Ufg27U:80:localhost:5000 serveo.net"
   },
   "license": "MIT",
   "dependencies": {
@@ -23,6 +23,8 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "mongoose": "^5.4.14",
+    "path-parser": "^4.2.0",
+    "ramda": "^0.26.1",
     "sendgrid": "^5.2.3",
     "stripe": "^6.25.1"
   },
