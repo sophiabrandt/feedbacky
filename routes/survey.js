@@ -11,7 +11,7 @@ const surveyTemplate = require('../services/emailTemplates/surveyTemplate')
 
 const Survey = mongoose.model('surveys')
 
-router.get('/thanks', (req, res) => {
+router.get('/:surveyId/:choice', (req, res) => {
   res.send('Thanks for voting!')
 })
 
