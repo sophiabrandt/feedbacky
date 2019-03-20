@@ -61,13 +61,26 @@ router.post('/webhooks', (req, res) => {
     return a.email === b.email && a.surveyId === b.surveyId
   }
 
-  const events = R.pipe(
+  const updateSurvey = ({ surveyId, email, choice }) => {
+    Survey.updateOne({
+      _id: surveyId,
+      recipients: {
+        $elemMatch: { email: email, responded: false }
+      }
+    }, {
+        $inc: { [choice]: 1 },
+        $set: { 'recipients.$.responded': true },
+        lastResponded: new Date()
+    }).exec()
+  }
+
+  R.pipe(
     R.map(getMatch),
     R.filter(Boolean),
-    R.uniqWith(sameEmailAndSurveyId)
+    R.uniqWith(sameEmailAndSurveyId),
+    R.forEach(updateSurvey)
   )(req.body)
-  
-  console.log(events)
+
   res.send({})
 })
 
