@@ -34,8 +34,18 @@ export const handleStripeToken = token => async dispatch => {
 }
 
 export const submitSurvey = (values, history) => async dispatch => {
-  const res = await axios.post('/api/surveys', values)
-
-  history.push('/surveys')
-  dispatch({ type: FETCH_USER, payload: res.data })
+  try {
+    const res = await axios.post('/api/surveys', values)
+    if (res.status === 200) {
+      history.push('/surveys')
+      dispatch({ type: FETCH_USER, payload: res.data })
+    } else {
+      throw new Error('Network response was not ok.')
+    }
+  } catch (error) {
+    console.log(
+      'There has been a problem with your axios operation: ',
+      error.message
+    )
+  }
 }
