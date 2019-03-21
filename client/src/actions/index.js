@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_USER } from './types'
+import { FETCH_USER, FETCH_SURVEYS } from './types'
 
 export const fetchUser = () => async dispatch => {
   try {
@@ -39,6 +39,22 @@ export const submitSurvey = (values, history) => async dispatch => {
     if (res.status === 200) {
       history.push('/surveys')
       dispatch({ type: FETCH_USER, payload: res.data })
+    } else {
+      throw new Error('Network response was not ok.')
+    }
+  } catch (error) {
+    console.log(
+      'There has been a problem with your axios operation: ',
+      error.message
+    )
+  }
+}
+
+export const fetchSurveys = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/surveys')
+    if (res.status === 200) {
+      dispatch({ type: FETCH_SURVEYS, payload: res.data })
     } else {
       throw new Error('Network response was not ok.')
     }
