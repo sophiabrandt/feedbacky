@@ -15,6 +15,22 @@ router.get('/:surveyId/:choice', (req, res) => {
   res.send('Thanks for voting!')
 })
 
+router.get('/', requireLogin, async (req, res) => {
+  try {
+    const surveys = await Survey.find({ _user: req.user.id }).select({
+      recipients: false,
+    })
+
+    if (surveys) {
+      res.send(surveys)
+    } else {
+      throw new Error('Network response was not ok.')
+    }
+  } catch (error) {
+    res.status(403).send(error)
+  }
+})
+
 router.post('/', requireLogin, requireCredits, async (req, res) => {
   const { title, subject, body, recipients } = req.body
 
@@ -24,10 +40,10 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
       subject,
       body,
       recipients: recipients.split(',').map(email => ({
-        email: email.trim()
+        email: email.trim(),
       })),
       _user: req.user.id,
-      dateSent: Date.now()
+      dateSent: Date.now(),
     })
     if (survey) {
       const mailer = new Mailer(survey, surveyTemplate(survey))
@@ -45,14 +61,14 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
       throw new Error('Network response was not ok.')
     }
   } catch (error) {
-    console.log(error)
+    res.status(403).send(error)
   }
 })
 
 router.post('/webhooks', (req, res) => {
   const p = new Path('/api/surveys/:surveyId/:choice')
 
-  const getMatch =({ email, url }) => {
+  const getMatch = ({ email, url }) => {
     const match = p.test(new URL(url).pathname)
     if (match) return { email, surveyId: match.surveyId, choice: match.choice }
   }
@@ -62,16 +78,19 @@ router.post('/webhooks', (req, res) => {
   }
 
   const updateSurvey = ({ surveyId, email, choice }) => {
-    Survey.updateOne({
-      _id: surveyId,
-      recipients: {
-        $elemMatch: { email: email, responded: false }
-      }
-    }, {
+    Survey.updateOne(
+      {
+        _id: surveyId,
+        recipients: {
+          $elemMatch: { email: email, responded: false },
+        },
+      },
+      {
         $inc: { [choice]: 1 },
         $set: { 'recipients.$.responded': true },
-        lastResponded: new Date()
-    }).exec()
+        lastResponded: new Date(),
+      }
+    ).exec()
   }
 
   R.pipe(
