@@ -32,7 +32,7 @@ class SurveyList extends Component {
         {this.props.surveys && this.props.surveys.length ? (
           <div>{this.renderSurveys()}</div>
         ) : (
-          <div>SurveyList</div>
+          <div />
         )}
       </div>
     )
