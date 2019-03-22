@@ -8,6 +8,7 @@ import Landing from './Landing'
 import Dashboard from './Dashboard'
 import SurveyNew from './surveys/SurveyNew'
 import ProtectedRoute from './ProtectedRoute'
+import Show404 from './Show404'
 
 class App extends Component {
   componentDidMount() {
@@ -23,6 +24,7 @@ class App extends Component {
               <Route exact path="/" component={Landing} />
               <ProtectedRoute exact path="/surveys" component={Dashboard} />
               <ProtectedRoute path="/surveys/new" component={SurveyNew} />
+              <Route component={Show404} />
             </Switch>
           </div>
         </BrowserRouter>
