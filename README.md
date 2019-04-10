@@ -21,7 +21,7 @@
 
 This is a toy app that allows you to make fake payments with Stripe and send out simple email surveys with SendGrid.
 
-The app was coded with the help of [Stephen Grinder's](https://github.com/StephenGrider) Udemy course [Node with React: FullStack Web Development](https://www.udemy.com/node-with-react-fullstack-web-development).
+The app was coded with the help of [Stephen Grider's](https://github.com/StephenGrider) Udemy course [Node with React: FullStack Web Development](https://www.udemy.com/node-with-react-fullstack-web-development).
 
 Differences/enhancements over the course:
 
@@ -29,9 +29,27 @@ Differences/enhancements over the course:
 - additional error handling with try/catch for Redux actions
 - conditional rendering on the homepage depending on authentication
 - protected routes if user is not authenticated
+- credits validation (checks if user has credits in their account before showing a new survey form)
 - 404 page and client-side "catch-all" routing
 - uses Ramda.js instead of Lodash.js
 
+## How to Use
+
+Navigate to [https://feed-backy.herokuapp.com/](https://feed-backy.herokuapp.com/) and log in with your Google Account.
+
+You can add credits via Stripe with fake credentials. Click on the blue "ADD CREDITS" button and fill in the pop-up window.  
+Insert a dummy email. The card number is:
+
+```
+4242 4242 4242 4242
+```
+
+Month/Year and CVS: add dummy numbers. Then "pay" \$5.
+
+On the main page of the app, click on "Collect now" and create a fake survey.
+
+The survey will be send via SendGrid and users can click on "yes" or "no". You can see these in your dashboard.
+
 ## Licence
 
-Code is copyright © 2019 Stephen Grinder & Sophia Brandt.
+Code is copyright © 2019 Stephen Grider & Sophia Brandt.
