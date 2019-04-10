@@ -1,11 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSurveys } from '../../actions'
+import { fetchSurveys, deleteSurvey } from '../../actions'
 
 class SurveyList extends Component {
   componentDidMount() {
     this.props.fetchSurveys()
   }
+
+  onDelete(event, surveyId) {
+    event.preventDefault()
+    this.props.deleteSurvey(surveyId)
+    this.props.fetchSurveys()
+  }
+
   renderSurveys() {
     return this.props.surveys.reverse().map(survey => {
       return (
@@ -18,6 +25,12 @@ class SurveyList extends Component {
             </p>
           </div>
           <div className="card-action">
+            <div
+              className="btn-floating waves-effect waves-light pink darken-3 right"
+              onClick={event => this.onDelete(event, survey._id)}
+            >
+              <i className="material-icons">delete</i>
+            </div>
             <div>Yes: {survey.yes}</div>
             <div>No: {survey.no}</div>
           </div>
@@ -43,5 +56,5 @@ const mapStateToProps = ({ surveys }) => ({ surveys })
 
 export default connect(
   mapStateToProps,
-  { fetchSurveys }
+  { fetchSurveys, deleteSurvey }
 )(SurveyList)
