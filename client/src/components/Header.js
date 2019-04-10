@@ -24,7 +24,7 @@ class Header extends Component {
           </li>,
           <li key="logout">
             <a href="/api/logout">Logout</a>
-          </li>
+          </li>,
         ]
     }
   }
@@ -34,7 +34,8 @@ class Header extends Component {
         <div className="nav-wrapper orange">
           <Link
             to={this.props.auth ? '/surveys' : '/'}
-            className="left brand-logo">
+            className="left brand-logo"
+          >
             Feedbacky
           </Link>
           <ul className="right">{this.renderContent()}</ul>
