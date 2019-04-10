@@ -103,4 +103,9 @@ router.post('/webhooks', (req, res) => {
   res.send({})
 })
 
+router.delete('/:surveyId', requireLogin, (req, res) => {
+  Survey.deleteOne({ _id: req.params.surveyId }).exec()
+  res.status(200).send({})
+})
+
 module.exports = router

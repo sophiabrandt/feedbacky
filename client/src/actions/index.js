@@ -65,3 +65,18 @@ export const fetchSurveys = () => async dispatch => {
     )
   }
 }
+
+export const deleteSurvey = surveyId => async () => {
+  try {
+    const res = await axios.delete('/api/surveys/' + surveyId)
+    if (res.status === 200) {
+    } else {
+      throw new Error('Network response was not ok.')
+    }
+  } catch (error) {
+    console.log(
+      'There has been a problem with your axios operation: ',
+      error.message
+    )
+  }
+}
