@@ -27,7 +27,7 @@ const SurveyForm = props => {
       <Link to="/surveys" className="red btn-flat white-text">
         Cancel
       </Link>
-      <button className="teal btn-flat right white-text" type="submit">
+      <button className="green btn-flat right white-text" type="submit">
         Next
         <i className="material-icons right">send</i>
       </button>
@@ -52,5 +52,5 @@ function validate(values) {
 export default reduxForm({
   validate,
   form: 'surveyForm',
-  destroyOnUnmount: false
+  destroyOnUnmount: false,
 })(SurveyForm)
