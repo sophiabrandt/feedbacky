@@ -31,7 +31,13 @@ Differences/enhancements over the course:
 - protected routes if user is not authenticated
 - credits validation (checks if user has credits in their account before showing a new survey form)
 - 404 page and client-side "catch-all" routing
+- ability to delete surveys
+- Metro UI color scheme
 - uses Ramda.js instead of Lodash.js
+
+![Feedbacky Screenshot #1](feedbacky_1.png)
+![Feedbacky Screenshot #2](feedbacky_2.png)
+![Feedbacky Screenshot #3](feedbacky_3.png)
 
 ## How to Use
 
