@@ -13,9 +13,9 @@ passport.deserializeUser(async (id, done) => {
   try {
     const user = await User.findById(id)
     if (!user) {
-      return done(new Error('user not found'))
+      return done(new Error('user not found'), user)
     }
-    done(null, user)
+    done(null, false)
   } catch (error) {
     done(error)
   }
@@ -27,7 +27,7 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/callback',
-      proxy: true
+      proxy: true,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
