@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 import SurveyForm from './SurveyForm'
 import SurveyFormReview from './SurveyFormReview'
@@ -6,7 +7,7 @@ import SurveyFormReview from './SurveyFormReview'
 class SurveyNew extends Component {
   state = { showFormReview: false }
 
-  renderContent() {
+  renderSurveyForm() {
     if (this.state.showFormReview === true) {
       return (
         <SurveyFormReview
@@ -21,11 +22,32 @@ class SurveyNew extends Component {
     )
   }
 
+  renderCreditsRequired() {
+    return (
+      <>
+        <h4>Please add credits to your account first!</h4>
+      </>
+    )
+  }
+
   render() {
-    return <div>{this.renderContent()}</div>
+    const { credits } = this.props
+    return (
+      <>
+        {credits ? (
+          <div>{this.renderSurveyForm()}</div>
+        ) : (
+          <div>{this.renderCreditsRequired()}</div>
+        )}
+      </>
+    )
   }
 }
 
-export default reduxForm({
-  form: 'surveyForm'
-})(SurveyNew)
+const mapStateToProps = ({ auth: { credits } }) => ({ credits })
+
+export default connect(mapStateToProps)(
+  reduxForm({
+    form: 'surveyForm',
+  })(SurveyNew)
+)
