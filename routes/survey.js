@@ -95,9 +95,9 @@ router.delete('/:surveyId', requireLogin, async (req, res) => {
   try {
     const survey = await Survey.findOneAndDelete({ _id: req.params.surveyId })
     if (survey) {
-      res.send(survey).status(204)
+      res.status(200).send(survey)
     } else {
-      res.send({ Error: 'Not found.' }).status(404)
+      res.status(404).send({ Error: 'Not found.' })
     }
   } catch (error) {
     return res.status(500).send(error)
