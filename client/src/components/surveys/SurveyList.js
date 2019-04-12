@@ -7,10 +7,9 @@ class SurveyList extends Component {
     this.props.fetchSurveys()
   }
 
-  onDelete(event, surveyId) {
+  deleteHandler(event, surveyId) {
     event.preventDefault()
     this.props.deleteSurvey(surveyId)
-    this.props.fetchSurveys()
   }
 
   renderSurveys() {
@@ -27,7 +26,7 @@ class SurveyList extends Component {
           <div className="card-action">
             <div
               className="btn-floating waves-effect waves-light pink darken-3 right"
-              onClick={event => this.onDelete(event, survey._id)}
+              onClick={event => this.deleteHandler(event, survey._id)}
             >
               <i className="material-icons">delete</i>
             </div>
