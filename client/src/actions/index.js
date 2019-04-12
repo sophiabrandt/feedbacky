@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_USER, FETCH_SURVEYS } from './types'
+import { FETCH_USER, FETCH_SURVEYS, DELETE_SURVEY } from './types'
 
 export const fetchUser = () => async dispatch => {
   try {
@@ -66,13 +66,13 @@ export const fetchSurveys = () => async dispatch => {
   }
 }
 
-export const deleteSurvey = surveyId => async () => {
+export const deleteSurvey = surveyId => async dispatch => {
   try {
     const res = await axios.delete('/api/surveys/' + surveyId)
-    if (res.status === 200) {
-    } else {
-      throw new Error('Network response was not ok.')
+    if (!res.status === 204) {
+      console.log(res.status)
     }
+    dispatch({ type: DELETE_SURVEY, payload: res.data })
   } catch (error) {
     console.log(
       'There has been a problem with your axios operation: ',
