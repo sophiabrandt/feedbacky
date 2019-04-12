@@ -103,9 +103,17 @@ router.post('/webhooks', (req, res) => {
   res.send({})
 })
 
-router.delete('/:surveyId', requireLogin, (req, res) => {
-  Survey.deleteOne({ _id: req.params.surveyId }).exec()
-  res.status(200).send({})
+router.delete('/:surveyId', requireLogin, async (req, res) => {
+  try {
+    const survey = await Survey.findOneAndDelete({ _id: req.params.surveyId })
+    if (survey) {
+      res.send(survey).status(204)
+    } else {
+      res.send({ Error: 'Not found.' }).status(404)
+    }
+  } catch (error) {
+    return res.status(500).send(error)
+  }
 })
 
 module.exports = router
