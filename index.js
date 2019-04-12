@@ -4,6 +4,10 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 
+// Helmet
+const helmet = require('helmet')
+app.use(helmet())
+
 // Body Parser
 const bodyParser = require('body-parser')
 app.use(bodyParser.json())
@@ -20,9 +24,9 @@ app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 1000,
     keys: [process.env.COOKIE_KEY],
+    httpOnly: true,
   })
 )
-
 // Passport
 const passport = require('@passport-next/passport')
 require('./services/passport')
