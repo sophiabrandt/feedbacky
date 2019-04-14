@@ -1,4 +1,4 @@
-# feedbacky
+<p align="left"><img src="logo/horizontal.png" alt="feedbacky" height="120px"></p>
 
 > Node.js, Express.js and React.js app that allows you to send out emails to collect feedback
 
