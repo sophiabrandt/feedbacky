@@ -23,7 +23,7 @@
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "helmet": "^3.16.0",
-    "mongoose": "^5.4.14",
+    "mongoose": "^5.7.5",
     "path-parser": "^4.2.0",
     "ramda": "^0.26.1",
     "sendgrid": "^5.2.3",
