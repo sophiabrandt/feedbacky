@@ -60,6 +60,8 @@ The survey will be send via SendGrid and users can click on "yes" or "no". You c
 
 See [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs): `git push heroku master`.
 
+Check [env.example](env.example) for a list of environment variables that are needed for deployment.
+
 ## Licence
 
 Code is copyright © 2019 Stephen Grider & Sophia Brandt.
