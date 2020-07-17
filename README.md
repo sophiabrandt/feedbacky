@@ -56,6 +56,10 @@ On the main page of the app, click on "Collect now" and create a fake survey.
 
 The survey will be send via SendGrid and users can click on "yes" or "no". You can see these in your dashboard.
 
+### Deployment
+
+See [Getting Started on Heroku with Node.js](https://devcenter.heroku.com/articles/getting-started-with-nodejs): `git push heroku master`.
+
 ## Licence
 
 Code is copyright © 2019 Stephen Grider & Sophia Brandt.
