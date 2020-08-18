@@ -17,7 +17,7 @@ app.use(
       connectSrc: ["'self'", 'https://checkout.stripe.com'],
       frameSrc: ["'self'", 'https://checkout.stripe.com'],
       childSrc: ["'self'", 'https://checkout.stripe.com'],
-      scriptSrc: ["'self'", 'https://checkout.stripe.com', "'unsafe-inline'"],
+      scriptSrc: ["'self'", 'https://checkout.stripe.com'],
       styleSrc: [
         "'self'",
         'https://fonts.googleapis.com',
