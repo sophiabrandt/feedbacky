@@ -12,24 +12,24 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@passport-next/passport": "^2.1.1",
+    "@passport-next/passport": "^3.1.0",
     "@passport-next/passport-google-oauth2": "^1.0.0",
     "body-parser": "^1.19.0",
     "cookie-session": "^2.0.0-rc.1",
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^3.23.3",
-    "mongoose": "^5.9.26",
-    "path-parser": "^4.2.0",
-    "ramda": "^0.26.1",
+    "helmet": "^4.1.0",
+    "mongoose": "^5.10.0",
+    "path-parser": "^6.1.0",
+    "ramda": "^0.27.1",
     "sendgrid": "^5.2.3",
-    "stripe": "^6.36.0"
+    "stripe": "^8.88.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.2",
-    "eslint-config-prettier": "^4.3.0",
+    "concurrently": "^5.3.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "nodemon": "^1.19.4",
-    "prettier": "^1.19.1"
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5"
   }
 }
