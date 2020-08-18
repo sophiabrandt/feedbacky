@@ -1,5 +1,5 @@
 const R = require('ramda')
-const Path = require('path-parser').default
+const { Path } = require('path-parser')
 const { URL } = require('url')
 const mongoose = require('mongoose')
 const express = require('express')
