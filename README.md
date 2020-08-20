@@ -25,6 +25,7 @@ The app was coded with the help of [Stephen Grider's](https://github.com/Stephen
 
 Differences/enhancements over the course:
 
+- [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) on the server side
 - uses [Passport-Next fork](https://github.com/passport-next/passport) and [Passport-Next Google OAuth 2.0 Strategy](https://github.com/passport-next/passport-google-oauth2) instead of the stale upstream repositories (and deprecated G+ auth)
 - additional error handling with try/catch for Redux actions
 - conditional rendering on the homepage depending on authentication
