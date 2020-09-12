@@ -34,7 +34,7 @@ router.post('/', requireLogin, requireCredits, async (req, res) => {
     title,
     subject,
     body,
-    recipients: recipients.split(',').map(email => ({
+    recipients: recipients.split(',').map((email) => ({
       email: email.trim(),
     })),
     _user: req.user.id,
