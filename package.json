@@ -18,18 +18,18 @@
     "cookie-session": "^2.0.0-rc.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^4.1.1",
-    "mongoose": "^5.10.5",
+    "helmet": "^4.2.0",
+    "mongoose": "^5.10.15",
     "path-parser": "^6.1.0",
     "ramda": "^0.27.1",
     "sendgrid": "^5.2.3",
-    "stripe": "^8.95.0"
+    "stripe": "^8.121.0"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "nodemon": "^2.0.4",
-    "prettier": "^2.1.1"
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
   }
 }
