@@ -27,7 +27,7 @@
   ],
   "devDependencies": {
     "axios": "^0.21.1",
-    "http-proxy-middleware": "^1.0.6",
+    "http-proxy-middleware": "^1.1.0",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
